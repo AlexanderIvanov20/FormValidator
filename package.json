@@ -12,10 +12,8 @@
     "cookie-session": "^1.4.0",
     "debug": "~2.6.9",
     "express": "~4.16.1",
-    "form-data": "^3.0.0",
     "hbs": "^4.1.1",
     "http-errors": "~1.6.3",
-    "mongoose": "^5.9.25",
     "morgan": "~1.9.1",
     "sequelize": "^6.3.3",
     "sqlite3": "^5.0.0"
