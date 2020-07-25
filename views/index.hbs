@@ -1,9 +1,7 @@
-Number: 50000
+Number: {{baseNumber}}
 
 <ul>
-  <li>New action on: 300</li>
-  <li>New action on: 400</li>
-  <li>New action on: 100</li>
-  <li>New action on: 150</li>
-  <li>New action on: 180</li>
+{{#each objects}}
+  <li>New action on: {{this.number}}</li>
+{{/each}}
 </ul>

@@ -3,8 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const cookieSession = require('cookie-session')
+const { connectToDatabase } = require('./models/database')
 
 var indexRouter = require('./routes/index');
+const formRouter = require('./routes/form')
+
+/**
+ * * Database connection
+ */
+connectToDatabase()
 
 var app = express();
 
@@ -17,8 +25,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['asdfdsaw1', 'asdfsaw2']
+}))
 
-app.use('/', indexRouter);
+app.use('/', indexRouter)
+app.use('/form', formRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

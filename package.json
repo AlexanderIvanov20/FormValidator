@@ -7,10 +7,13 @@
     "dev": "nodemon app.js"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "cookie-parser": "~1.4.4",
+    "cookie-session": "^1.4.0",
     "debug": "~2.6.9",
     "express": "~4.16.1",
-    "hbs": "~4.0.4",
+    "form-data": "^3.0.0",
+    "hbs": "^4.1.1",
     "http-errors": "~1.6.3",
     "mongoose": "^5.9.25",
     "morgan": "~1.9.1"
