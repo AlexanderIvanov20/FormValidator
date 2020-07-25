@@ -49,7 +49,7 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
-var server = app.listen(process.env.PORT || 5000, () => {
+var server = app.listen(process.env.PORT || 80, () => {
   var port = server.address().port;
   console.log("Express is working on port " + port);
 });
