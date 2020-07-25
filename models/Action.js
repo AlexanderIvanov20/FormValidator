@@ -1,10 +1,21 @@
-const { Schema, model } = require('mongoose');
+const { DataTypes } = require('sequelize');
+const sequelize = require('./database');
 
-/* Describe user's schema of the collection */
-const schema = new Schema({
+const User = sequelize.define('User', {
   number: {
-    type: Number
+    type: DataTypes.STRING,
+    allowNull: false
   }
-}, { collection: 'actions' });
+}, {
+  timestamps: false
+});
 
-module.exports = model('Action', schema);
+// User.sync({ force: true, alter: true })
+//   .then(() => {
+//     console.log('The table for the User model was just (re)created!');
+//   })
+//   .catch((error) => {
+//     console.log(`Error: ${error}`);
+//   });
+
+module.exports = User;

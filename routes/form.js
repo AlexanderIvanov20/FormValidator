@@ -1,18 +1,8 @@
 const express = require('Express')
-const smsc = require('../smsc_api')
 const Action = require('../models/Action')
 const axios = require('axios').default
 
 const router = express.Router()
-
-smsc.configure({
-  login: 'luvr',
-  password: 'hubqaq-3bicru-zAvmav'
-})
-
-smsc.test((err) => {
-  if (err) return console.error('error: ' + err);
-})
 
 router.get('', (req, res) => {
   res.render('form')

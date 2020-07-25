@@ -4,15 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cookieSession = require('cookie-session')
-const { connectToDatabase } = require('./models/database')
 
 var indexRouter = require('./routes/index');
 const formRouter = require('./routes/form')
-
-/**
- * * Database connection
- */
-connectToDatabase()
 
 var app = express();
 

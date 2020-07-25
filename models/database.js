@@ -1,17 +1,17 @@
-const mongoose = require('mongoose')
+const { Sequelize } = require('sequelize')
 
-/**
- * ? Connect to database.
- */
-const connectToDatabase = async () => {
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: 'database.sqlite'
+});
+
+(async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/FormValidator', {
-      useNewUrlParser: true,
-      useFindAndModify: false,
-      useUnifiedTopology: true,
-      useCreateIndex: true,
-    })
-  } catch (e) { throw new Error(e) }
-}
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+})()
 
-module.exports = { connectToDatabase }
+module.exports = sequelize;

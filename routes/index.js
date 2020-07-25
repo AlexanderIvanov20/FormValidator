@@ -8,7 +8,7 @@ const router = express.Router()
 router.get('/', (req, res) => {
   var baseNumber = JSON.parse(fs.readFileSync('options.json', 'utf8')).baseNumber
 
-  Action.find({})
+  Action.findAll({})
     .then((values) => {
       values.forEach((value) => {
         baseNumber -= +value.number
