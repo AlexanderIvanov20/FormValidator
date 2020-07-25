@@ -4,7 +4,6 @@ const fs = require('fs');
 
 const router = express.Router()
 
-/* GET home page. */
 router.get('/', (req, res) => {
   var baseNumber = JSON.parse(fs.readFileSync('options.json', 'utf8')).baseNumber
 
@@ -23,6 +22,14 @@ router.get('/', (req, res) => {
 
 router.get('/deleteActions', (req, res) => {
   Action.destroy({ where: {}, truncate: true })
+  res.redirect('/')
+})
+
+router.get('/setBaseNumber/:valueNumber', (req, res) => {
+  const newBaseNumber = +req.params.valueNumber
+  const dataToWrite = JSON.stringify({ baseNumber: newBaseNumber })
+  fs.writeFileSync('options.json', dataToWrite, 'utf8')
+
   res.redirect('/')
 })
 

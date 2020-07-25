@@ -12,11 +12,6 @@ router.post('', async (req, res) => {
   const actionNumber = +req.body.numberValue
   req.session.actionValue = actionNumber
 
-  // Action.create({ number: actionNumber }, (err, action) => {
-  //   if (err) res.json({ databaseError: err })
-  //   console.log(action)
-  // })
-
   res.redirect('/form/phone')
 })
 
