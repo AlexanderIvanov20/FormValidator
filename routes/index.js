@@ -27,10 +27,14 @@ router.get('/deleteActions', (req, res) => {
 
 router.get('/setBaseNumber/:valueNumber', (req, res) => {
   const newBaseNumber = +req.params.valueNumber
-  const dataToWrite = JSON.stringify({ baseNumber: newBaseNumber })
-  fs.writeFileSync('options.json', dataToWrite, 'utf8')
+  if (isNaN(newBaseNumber)) {
+    res.json({ queryError: 'Invalid value... enter number!' })
+  } else {
+    const dataToWrite = JSON.stringify({ baseNumber: newBaseNumber })
+    fs.writeFileSync('options.json', dataToWrite, 'utf8')
 
-  res.redirect('/')
+    res.redirect('/')
+  }
 })
 
 module.exports = router
