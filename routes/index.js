@@ -19,6 +19,11 @@ router.get('/', (req, res) => {
     .catch((err) => {
       res.json({ databaseError: err })
     })
-});
+})
+
+router.get('/deleteActions', (req, res) => {
+  Action.destroy({ where: {}, truncate: true })
+  res.redirect('/')
+})
 
 module.exports = router

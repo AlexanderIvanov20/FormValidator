@@ -37,6 +37,9 @@ router.post('/phone', (req, res) => {
       console.log(response)
       res.redirect('/form/code')
     })
+    .catch((err) => {
+      res.json({ sendingError: err })
+    })
 })
 
 router.get('/code', (req, res) => {
