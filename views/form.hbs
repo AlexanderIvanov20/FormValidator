@@ -1,6 +1,17 @@
-<form action="" method="post">
-  <div>
-    <input type="number" name="numberValue" placeholder="Action value">
-    <button type="submit">Next</button>
+<form action="#">
+  <div class="steps current">
+    <input type="number" name="actionvalue" placeholder="Action value" id="actionNumber">
+    <a href="#next" onclick="getActionValue(document.getElementById('actionNumber').value)">Next</a>
+  </div>
+
+  <div class="steps">
+    <input type="text" name="telephone" placeholder="Telephone number" id="telephone">
+    <a href="#next" onclick="getTelephone(document.getElementById('telephone').value)">Next</a>
+  </div>
+
+  <div class="steps">
+    <input type="number" name="code" placeholder="Code from SMS" id="code">
+    <a href="#" onclick="getCode(document.getElementById('code').value)">Verify and Send</a>
+    <p id="errorOrSuccess"></p>
   </div>
 </form>
