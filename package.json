@@ -19,17 +19,9 @@
   },
   "description": "",
   "main": "app.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AlexanderIvanov20/FormValidator.git"
-  },
   "keywords": [
     "FormValidator"
   ],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AlexanderIvanov20/FormValidator/issues"
-  },
-  "homepage": "https://github.com/AlexanderIvanov20/FormValidator#readme"
+  "license": "ISC"
 }
