@@ -7,6 +7,14 @@ $(document).ready(function () {
     currentStep.removeClass('current');
     currentStep.next().addClass('current');
   });
+
+  $('.login__steps a[href="#next"]').on('click', function(e) {
+    e.preventDefault();
+    var currentStep = $(this).closest('.login__steps');
+
+    currentStep.removeClass('current');
+    currentStep.next().addClass('current');
+  });
 });
 
 var userOptions = {}

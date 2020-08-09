@@ -5,3 +5,11 @@
 .steps.current {
   display: block;
 }
+
+.login__steps {
+  display: none;
+}
+
+.login__steps.current {
+  display: block;
+}
