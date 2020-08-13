@@ -5,11 +5,10 @@ function sendSMS(phoneNumber, encCode, res) {
   axios
     .get(url)
     .then((response) => {
-      console.log(response);
-      res.status(200).send({ rightCode: code });
+      res.status(200).send({});
     })
     .catch((err) => {
-      res.json({ sendingError: err });
+      res.status(500).send({ sendingError: err });
     });
 }
 

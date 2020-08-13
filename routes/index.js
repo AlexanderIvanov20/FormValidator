@@ -1,6 +1,7 @@
 const express = require("express");
 const Action = require("../models/Action");
 const fs = require("fs");
+const path = require("path");
 
 const router = express.Router();
 
@@ -33,9 +34,14 @@ router.get("/setBaseNumber/:valueNumber", (req, res) => {
   } else {
     const dataToWrite = JSON.stringify({ baseNumber: newBaseNumber });
     fs.writeFileSync("options.json", dataToWrite, "utf8");
-
     res.redirect("/");
   }
+});
+
+router.get("/download/:name", (req, res) => {
+  const fileName = req.params.name;
+  const filePath = path.join(__dirname, "../", "init.pdf");
+  res.download(filePath);
 });
 
 module.exports = router;

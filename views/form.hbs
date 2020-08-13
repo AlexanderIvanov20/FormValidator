@@ -1,10 +1,11 @@
-<form action="#">
-  <div class="steps current">
-    <input type="text" placeholder="Name"><br>
-    <input type="text" placeholder="Surname"><br>
-    <input type="text" placeholder="Company"><br>
-    <input type="text" placeholder="Position"><br>
-    <input type="text" placeholder="Title"><br>
+{{!-- <form action="#"> --}}
+<div class="steps current">
+  <form id="idForm" action="/form">
+    <input type="text" placeholder="Name" name="name"><br>
+    <input type="text" placeholder="Surname" name="surname"><br>
+    <input type="text" placeholder="Company" name="company"><br>
+    <input type="text" placeholder="Position" name="position"><br>
+    <input type="text" placeholder="Title" name="title"><br>
 
     <input type="hidden" name="s1" value="String 1">
     <input type="hidden" name="s2" value="String 2">
@@ -35,21 +36,20 @@
     <input type="hidden" name="s27" value="String 27">
     <input type="hidden" name="s28" value="String 28">
 
-
     <input type="number" name="actionvalue" placeholder="Action value" id="actionNumber"><br>
 
+    <button type="submit">Next</button>
+  </form>
+</div>
 
-    <a href="#next" onclick="getActionValue(document.getElementById('actionNumber').value)">Next</a>
-  </div>
+<div class="steps">
+  <input type="text" name="telephone" placeholder="Telephone number" id="telephone">
+  <a href="#next" onclick="getTelephone(document.getElementById('telephone').value)">Next</a>
+</div>
 
-  <div class="steps">
-    <input type="text" name="telephone" placeholder="Telephone number" id="telephone">
-    <a href="#next" onclick="getTelephone(document.getElementById('telephone').value)">Next</a>
-  </div>
-
-  <div class="steps">
-    <input type="number" name="code" placeholder="Code from SMS" id="code">
-    <a href="#" onclick="getCode(document.getElementById('code').value)">Verify and Send</a>
-    <p id="errorOrSuccess"></p>
-  </div>
-</form>
+<div class="steps">
+  <input type="number" name="code" placeholder="Code from SMS" id="code">
+  <a href="#" onclick="getCode(document.getElementById('code').value)">Verify and Send</a>
+  <p id="errorOrSuccess"></p>
+</div>
+{{!-- </form> --}}

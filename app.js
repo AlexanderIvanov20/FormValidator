@@ -9,6 +9,7 @@ const compression = require("compression");
 const hbs = require("hbs");
 const session = require("express-session");
 const helmet = require("helmet");
+const moment = require("moment");
 
 const indexRouter = require("./routes/index");
 const formRouter = require("./routes/form");
@@ -19,8 +20,13 @@ const app = express();
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
+// setup handlebars
 hbs.registerPartials(__dirname + "/views/partials");
+hbs.registerHelper("formatDate", (date) => {
+  return moment(date).format("LLL");
+});
 
+// include all nesessary middlewares
 app.use(compression());
 app.disable("x-powered-by");
 app.use(logger("dev"));
@@ -28,17 +34,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
 app.use(
   cookieSession({
     name: "session",
     keys: ["asdfdsaw1", "asdfsaw2"],
   })
 );
-
 app.use(cors());
-app.use(helmet());
 
+// include routes
 app.use("/", indexRouter);
 app.use("/form", formRouter);
 app.use("/login", loginRouter);

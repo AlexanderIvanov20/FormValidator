@@ -1,19 +1,12 @@
 Number: {{baseNumber}}
 
 <ul>
-  <li>
-    Name: Ivanov<br>
-    Surname: Ivanovych<br>
-    Date: 30.07.2020 15:30<br>
-    Download: <a href="#">pdf</a><br>
-    New action on: 300
-  </li>
   {{#each objects}}
   <li>
-    Name: Ivanov<br>
-    Surname: Ivanovych<br>
-    Date: 30.07.2020 15:30<br>
-    Download: <a href="#">pdf</a><br>
+    Name: {{this.name}}<br>
+    Surname: {{this.surname}}<br>
+    Date: {{formatDate this.date}}<br>
+    Download: <a href="{{this.downloadUrl}}">pdf</a><br>
     New action on: {{this.number}}
   </li>
   {{/each}}
