@@ -16,8 +16,8 @@ router.post("/", (req, res) => {
   console.log(code);
 
   var encCode = encodeURI(`Your message is: ${code}`);
-  // res.status(200).send({ rightCode: code });
-  sendSMS(phoneNumber, encCode, res);
+  res.status(200).send();
+  // sendSMS(phoneNumber, encCode, res);
 });
 
 router.post("/code", (req, res) => {
