@@ -1,21 +1,28 @@
-const { PDFDocument, rgb, StandardFonts } = require("pdf-lib");
-const fs = require("fs");
+const PDFDocument = require("pdfkit");
 const path = require("path");
+const fs = require("fs");
 
-(async () => {
-  const doc = await PDFDocument.create();
+const doc = new PDFDocument();
 
-  const page = doc.addPage();
+doc.pipe(
+  fs.createWriteStream(
+    path.join(__dirname, "../", "public", "pdfs", "some.pdf")
+  )
+);
 
-  doc.registerFontkit(path.join(__dirname, "../", "/Montserrat-Regular.ttf"));
+doc.polygon([33, 0], [33, 80], [580, 80], [580, 0]).fillAndStroke("#f0c20f");
 
-  page.drawText("This text was added with JavaScript!", {
-    x: 400,
-    y: 700,
-    size: 28,
-    color: rgb(0, 0, 0),
-  });
+doc.image(path.join(__dirname, "../", "public", "images", "logo.png"), 75, 20, {
+  scale: 0.35,
+});
 
-  const pdfBytes = await doc.save();
-  fs.writeFileSync("public/pdfs/some.pdf", pdfBytes);
-})();
+doc.lineCap("butt").moveTo(75, 160).lineTo(535, 160).fillAndStroke("#7b777d");
+doc.lineCap("butt").moveTo(75, 715).lineTo(535, 715).fillAndStroke("#7b777d");
+
+doc.fillColor("#000000").fontSize(18).text("Dear Entony Hopkins", 75, 120);
+doc
+  .fillColor("#000000")
+  .fontSize(12)
+  .text("I passed interview at 21.07.2020 in the evening", 75, 180);
+
+doc.end();
