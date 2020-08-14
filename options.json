@@ -1,3 +1,5 @@
 {
-  "baseNumber": 50000
+  "baseNumber": 50000,
+  "headerColor": "#FFCC00",
+  "logo": "logo.png"
 }

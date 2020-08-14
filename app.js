@@ -7,8 +7,6 @@ const cookieSession = require("cookie-session");
 const cors = require("cors");
 const compression = require("compression");
 const hbs = require("hbs");
-const session = require("express-session");
-const helmet = require("helmet");
 const moment = require("moment");
 
 const indexRouter = require("./routes/index");

@@ -23,6 +23,17 @@ router.get("/", (req, res) => {
 });
 
 router.get("/deleteActions", (req, res) => {
+  const directory = "public/pdfs";
+  fs.readdir(directory, (err, files) => {
+    if (err) throw err;
+
+    for (const file of files) {
+      fs.unlink(path.join(directory, file), (err) => {
+        if (err) throw err;
+      });
+    }
+  });
+
   Action.destroy({ where: {}, truncate: true });
   res.redirect("/");
 });
@@ -32,7 +43,9 @@ router.get("/setBaseNumber/:valueNumber", (req, res) => {
   if (isNaN(newBaseNumber)) {
     res.json({ queryError: "Invalid value... enter number!" });
   } else {
-    const dataToWrite = JSON.stringify({ baseNumber: newBaseNumber });
+    const readedData = JSON.parse(fs.readFileSync("options.json", "utf-8"));
+    readedData.baseNumber = newBaseNumber;
+    const dataToWrite = JSON.stringify(readedData, null, 2);
     fs.writeFileSync("options.json", dataToWrite, "utf8");
     res.redirect("/");
   }
@@ -40,7 +53,7 @@ router.get("/setBaseNumber/:valueNumber", (req, res) => {
 
 router.get("/download/:name", (req, res) => {
   const fileName = req.params.name;
-  const filePath = path.join(__dirname, "../", "init.pdf");
+  const filePath = path.join(__dirname, "../", "public", "pdfs", fileName);
   res.download(filePath);
 });
 
