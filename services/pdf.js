@@ -68,7 +68,7 @@ class PDFGenerator {
     this.doc.font("fonts/Montserrat-Bold.ttf");
     this.doc.text(`${this.options.s25}\n\n${this.options.s26}`, 52, 685);
 
-    this.doc.fillColor("#646464");
+    this.doc.fillColor("#646464").font("fonts/Montserrat-Regular.ttf");
     this.doc.text(`${this.options.s1}`, 313, 18);
     this.doc.text(`${this.options.s3}`, 313, 37);
     this.doc.text(`${this.options.s2}`, 515, 18);
