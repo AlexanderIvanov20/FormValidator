@@ -63,7 +63,9 @@ function getCode(code) {
       document.getElementById("errorOrSuccess").innerHTML = json.msg;
     },
     error: function (xhr, errmsg, err) {
-      console.log(xhr.status + ": " + xhr.responseText);
+      // console.log(xhr.status + ": " + xhr.responseText);
+      document.getElementById("errorOrSuccess").innerHTML =
+        xhr.responseText.msg;
     },
   });
 }
@@ -93,7 +95,9 @@ function getCodeLogin(code) {
       document.getElementById("errorOrSuccess").innerHTML = json.msg;
     },
     error: function (xhr, errmsg, err) {
-      console.log(xhr.status + ": " + xhr.responseText);
+      // console.log(xhr.status + ": " + xhr.responseText);
+      document.getElementById("errorOrSuccess").innerHTML =
+        xhr.responseText.msg;
     },
   });
 }

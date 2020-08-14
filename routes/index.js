@@ -2,8 +2,12 @@ const express = require("express");
 const Action = require("../models/Action");
 const fs = require("fs");
 const path = require("path");
+const updateBaseNumber = require("../services/number");
+const { update } = require("../models/Action");
 
 const router = express.Router();
+
+var ultraBaseNumber = 50000;
 
 router.get("/", (req, res) => {
   var baseNumber = JSON.parse(fs.readFileSync("options.json", "utf8"))
@@ -11,9 +15,9 @@ router.get("/", (req, res) => {
 
   Action.findAll({})
     .then((values) => {
-      values.forEach((value) => {
-        baseNumber -= +value.number;
-      });
+      // values.forEach((value) => {
+      //   baseNumber -= +value.number;
+      // });
       values = values.reverse();
       res.render("index", { objects: values, baseNumber });
     })
@@ -34,6 +38,7 @@ router.get("/deleteActions", (req, res) => {
     }
   });
 
+  updateBaseNumber(ultraBaseNumber);
   Action.destroy({ where: {}, truncate: true });
   res.redirect("/");
 });
@@ -43,10 +48,8 @@ router.get("/setBaseNumber/:valueNumber", (req, res) => {
   if (isNaN(newBaseNumber)) {
     res.json({ queryError: "Invalid value... enter number!" });
   } else {
-    const readedData = JSON.parse(fs.readFileSync("options.json", "utf-8"));
-    readedData.baseNumber = newBaseNumber;
-    const dataToWrite = JSON.stringify(readedData, null, 2);
-    fs.writeFileSync("options.json", dataToWrite, "utf8");
+    ultraBaseNumber = newBaseNumber;
+    updateBaseNumber(newBaseNumber);
     res.redirect("/");
   }
 });

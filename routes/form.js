@@ -4,6 +4,7 @@ const axios = require("axios").default;
 const sendSMS = require("../services/send");
 const PDFGenerator = require("../services/pdf");
 const fs = require("fs");
+const updateBaseNumber = require("../services/number");
 
 const router = express.Router();
 
@@ -32,9 +33,12 @@ router.post("/phone", (req, res) => {
 router.post("/code", (req, res) => {
   const recievedCode = +req.body.code;
   const rightCode = +data.rightCode;
+
   if (recievedCode === rightCode) {
     const baseNumber = JSON.parse(fs.readFileSync("options.json", "utf8"))
       .baseNumber;
+    const finalNumber = baseNumber - +data.actionvalue;
+
     const date = new Date();
     const jsonOptions = JSON.parse(fs.readFileSync("options.json", "utf8"));
 
@@ -61,6 +65,7 @@ router.post("/code", (req, res) => {
         if (err) res.json({ databaseError: err });
       }
     );
+    updateBaseNumber(finalNumber);
     res.status(200).send({ msg: "Action allowed!" });
   } else {
     res.status(503).send({ msg: "Incorrect code..." });
